@@ -7,13 +7,15 @@ You probably already know javascript is a tricky language and it has some weird 
     console.log(1<2<3)  // true
     console.log(3>2>1)  // false
 
-> **Explanation:** 
+> **Explanation:**
 > Let's see this step by step.
-> *First comparison 1<2<3*
+>
+> _First comparison 1<2<3_
 > 1<2 is true, true is 1
 > 1<3 is true
 > Hence, final output is true
-> *Second Comparison 3>2>1*  
+>
+> _Second Comparison 3>2>1_  
 > 3>2 is true, true is 1
 > 1>1 is false
 > Hence, final output is false
@@ -28,8 +30,9 @@ It will return true.
 
     console.log(031) // 25
 
-> **Explanation:** 
+> **Explanation:**
 > When a number has zero at start it is considered as Octal Number in javascript.
+>
 > Also, if the digits after zero is outside range (0,7) it will be considered as decimal number.
 
 For example, 39 is not a valid octal number, hence if we add a zero as prefix to 39 it would be treated as a decimal number.
@@ -51,8 +54,9 @@ For more details, checkout [MDN Docs](https://developer.mozilla.org/en-US/docs/W
 
 > **Explanation**
 > In the above example, x is a local variable because it is declared in function scope.
-> Whereas, y is neither declared in function scope nor in global scope. So, javascript interpreter takes it as 
+> Whereas, y is neither declared in function scope nor in global scope. So, javascript interpreter takes it as
 > window.y = 10
+>
 > Hence, y is available globally now.
 > Here, we can say that y is an accidental global variable.
 
@@ -62,6 +66,7 @@ For more details, checkout [MDN Docs](https://developer.mozilla.org/en-US/docs/W
 
 > **Explanation**
 > The '==' operator converts both sides into numbers and then compares them. In this case,
+>
 > On left we have, an empty array which is equal to 0.
 > On right we have, ![] i.e. Number( ! Boolean( [] ) ) which is 0.
 > Hence, it returns true
@@ -72,8 +77,10 @@ For more details, checkout [MDN Docs](https://developer.mozilla.org/en-US/docs/W
 
 > **Explanation**
 > The javascript interpreter interprets as
+>
 > [1,2,3].toString() + [4,5,6].toString()
-> Hence, it returns *'1,2,34,5,6'*
+>
+> Hence, it returns _'1,2,34,5,6'_
 
 These were some unexpected things in js, which makes complete sense once you understand them.
 
