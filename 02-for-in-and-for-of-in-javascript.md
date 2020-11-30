@@ -24,39 +24,45 @@ Let's understand this with a help of example.
 
 Here the iteration variable (i) is array index.
 
-    let arr = ['Joey', 'Chandler', 'Ross'];
-    for (let i in arr) {
-        console.log(i);
-    }
+```javascript
+let arr = ['Joey', 'Chandler', 'Ross'];
+for (let i in arr) {
+    console.log(i);
+}
 
-    // Output: 0, 1, 2
+// Output: 0, 1, 2
+```
 
 #### for...in over String
 
 Here the iteration variable (i) is string index.
 
-    let str = 'FRIENDS'
-    for (let i in str) {
-        console.log(i)
-    }
+```javascript
+let str = 'FRIENDS'
+for (let i in str) {
+    console.log(i)
+}
 
-    // Output: 0, 1, 2, 3, 4, 5, 6
+// Output: 0, 1, 2, 3, 4, 5, 6
+```
 
 #### for...in over Object
 
 Here the iteration variable (i) is property of the object.
 
-    let obj = {
-        "name": "F.R.I.E.N.D.S.",
-        "category": "American Sitcom",
-        "totalEpisodes": 236
-    }
+```javascript
+let obj = {
+    "name": "F.R.I.E.N.D.S.",
+    "category": "American Sitcom",
+    "totalEpisodes": 236
+}
 
-    for (let i in obj) {
-        console.log(i)
-    }
+for (let i in obj) {
+    console.log(i)
+}
 
-    // Output: name, category, totalEpisodes
+// Output: name, category, totalEpisodes
+```
 
 ### for...of
 
@@ -66,38 +72,44 @@ The for...of loop is used to iterate over iterable objects like Arrays, Strings,
 
 Here the iteration variable (i) is items of array.
 
-    let arr = ['Joey', 'Chandler', 'Ross']
-    for (let i of arr) {
-        console.log(i)
-    }
+```javascript
+let arr = ['Joey', 'Chandler', 'Ross']
+for (let i of arr) {
+    console.log(i)
+}
 
-    // Output: 'Joey', 'Chandler', 'Ross'
+// Output: 'Joey', 'Chandler', 'Ross'
+```
 
 #### for...of over String
 
 Here the iteration variable (i) is character of a string.
 
-    let str = 'FRIENDS'
-    for (let i of str) {
-        console.log(i)
-    }
+```javascript
+let str = 'FRIENDS'
+for (let i of str) {
+    console.log(i)
+}
 
-    // Output: 'F', 'R', 'I', 'E', 'N', 'D', 'S'
+// Output: 'F', 'R', 'I', 'E', 'N', 'D', 'S'
+```
 
 #### for...of over Object
 
 It cannot be used to iterate over plain objects.
 
-    let obj = {
-        "name": "F.R.I.E.N.D.S.",
-        "category": "American Sitcom",
-        "totalEpisodes": 236
-    }
+```javascript
+let obj = {
+    "name": "F.R.I.E.N.D.S.",
+    "category": "American Sitcom",
+    "totalEpisodes": 236
+}
 
-    for (let i of obj) {
-        console.log(i)
-    }
+for (let i of obj) {
+    console.log(i)
+}
 
-    // Output: Type Error: obj is not iterable
+// Output: Type Error: obj is not iterable
+```
 
 These were the for...in and for...of loops in Javascript.
