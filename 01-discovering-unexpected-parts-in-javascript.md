@@ -4,8 +4,10 @@ You probably already know javascript is a tricky language and it has some weird 
 
 #### - Weird Comparison
 
+```javascript
     console.log(1<2<3)  // true
     console.log(3>2>1)  // false
+```
 
 > **Explanation:**
 > Let's see this step by step.
