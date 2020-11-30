@@ -17,7 +17,9 @@ First of all we need to install Redis
 
 Installing Redis using Homebrew
 
-    > brew install redis
+```bash
+> brew install redis
+```
 
 After installing Redis, initialize the server by entering following command
 
@@ -25,68 +27,78 @@ After installing Redis, initialize the server by entering following command
 
 Now, we need to create the actual application.
 
-    cd Desktop
-    mkdir nodejs-redis-caching
-    cd nodejs-redis-caching
-    npm init -y
-    npm i express axios redis
-    code .
+```bash
+cd Desktop
+mkdir nodejs-redis-caching
+cd nodejs-redis-caching
+npm init -y
+npm i express axios redis
+code .
+```
 
 After opening the project in VSCode or any editor. Create index.js
 
 _nodejs-redis-caching/index.js_
 
-    const express = require('express');
-    const axios = require('axios');
-    const redis = require('redis');
+```javascript
+const express = require('express');
+const axios = require('axios');
+const redis = require('redis');
 
-    const app = express();
-    const client = redis.createClient(6379);
+const app = express();
+const client = redis.createClient(6379);
 
-    app.listen(9000, () => {
-        console.log('Server is running at port 9000');
-    });
+app.listen(9000, () => {
+    console.log('Server is running at port 9000');
+});
+```
 
 Now let's make a _GET Request_ at localhost:9000/username
 
 _nodejs-redis-caching/index.js_
 
-    app.get('/:username', (req, res) => {
-        let { username } = req.params;
-        axios
-            .get(`https://www.instagram.com/${username}/?__a=1`)
-            .then((result) => {
-                let fc = result.data.graphql.user.edge_followed_by.count;
-                client.setex(username, 3000, fc);
-                res.send(`<h3>${username} has ${fc} followers.</h3>`);
-            })
-            .catch((err) => {
-                res.json({ error: 'Server Error' });
-            });
-    });
+```javascript
+app.get('/:username', (req, res) => {
+    let { username } = req.params;
+    axios
+        .get(`https://www.instagram.com/${username}/?__a=1`)
+        .then((result) => {
+            let fc = result.data.graphql.user.edge_followed_by.count;
+            client.setex(username, 3000, fc);
+            res.send(`<h3>${username} has ${fc} followers.</h3>`);
+        })
+        .catch((err) => {
+            res.json({ error: 'Server Error' });
+        });
+});
+```
 
 In the above code, we are making a GET Request a localhost:9000/username route and fetching user's follower count, also were caching that data into redis. But we are not retrieving the cached data from memory.
 To do so, we need to make a middleware function.
 
-    function getCache(req, res, next) {
-        let { username } = req.params;
-        client.get(username, (err, result) => {
-            if (err) {
-                res.send('Server Error');
-            }
-            if (result !== null) {
-                res.send(`<h3>${username} has ${result} followers.</h3>`);
-            } else {
-                next();
-            }
-        });
-    }
+```javascript
+function getCache(req, res, next) {
+    let { username } = req.params;
+    client.get(username, (err, result) => {
+        if (err) {
+            res.send('Server Error');
+        }
+        if (result !== null) {
+            res.send(`<h3>${username} has ${result} followers.</h3>`);
+        } else {
+            next();
+        }
+    });
+}
+```
 
 Now we need to add this middleware into our main GET Request.
 
-    app.get('/:username', getCache, (req, res) => {
-        ...
-    }
+```javascript
+app.get('/:username', getCache, (req, res) => {
+    // ...
+}
+```
 
 So, that's it. We have successfully cached the data and able to retrieve it from memory.
 
