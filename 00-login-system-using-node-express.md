@@ -81,7 +81,7 @@ We need to create a folder named 'views' in root directory.
 
 login-system/views/index.ejs
 
-``html
+```html
 <html>
 <head>
     <title>Login System</title>
