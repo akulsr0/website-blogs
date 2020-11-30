@@ -60,8 +60,7 @@ _nodejs-redis-caching/index.js_
 ```javascript
 app.get('/:username', (req, res) => {
     let { username } = req.params;
-    axios
-        .get(`https://www.instagram.com/${username}/?__a=1`)
+    axios.get(`https://www.instagram.com/${username}/?__a=1`)
         .then((result) => {
             let fc = result.data.graphql.user.edge_followed_by.count;
             client.setex(username, 3000, fc);
